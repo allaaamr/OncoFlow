@@ -1,0 +1,66 @@
+/home/alaa.mohamed/OncoCast+/src/training/trainer.py:77: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = GradScaler(enabled=self.use_amp)
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /home/alaa.mohamed/.netrc.
+wandb: Currently logged in as: allaaamr (allaaamr-mbzuai) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run vl3qtomd
+wandb: Tracking run with wandb version 0.28.2
+wandb: Run data is saved locally in /home/alaa.mohamed/OncoCast+/wandb/run-20260915_005110-vl3qtomd
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run voxel_exp01
+wandb: ⭐️ View project at https://wandb.ai/allaaamr-mbzuai/OncoCast
+wandb: 🚀 View run at https://wandb.ai/allaaamr-mbzuai/OncoCast/runs/vl3qtomd
+/home/alaa.mohamed/OncoCast+/src/training/trainer.py:165: UserWarning: [split_patients_by_id] Existing split CSV '/home/alaa.mohamed/OncoCast+/src/data/splits/mu_patient_split.csv' does not exactly match the patient set currently in '/home/alaa.mohamed/MIU2' (csv=128 patients, data_dir=203 patients, overlap=128). Reusing the existing split as-is (not regenerating) — delete the CSV explicitly if you intend to produce a new split.
+  train_ids, val_ids, test_ids = split_patients_by_id(
+============================================================
+3D Whole-Volume Longitudinal MRI Diffusion / Flow Matching
+============================================================
+Device:        cuda
+Representation:voxel
+Voxel shape:   (64, 192, 192)
+VAE:           none (representation=voxel — identity pass-through, see src/models/vae_wrapper.py)
+UNet channels: 32
+Batch size:    1 (whole volumes)
+Seg head:      OFF
+Training mode: flow_matching
+============================================================
+[TaGeDiff] flow_matching.flow_loss='normalized_tumor_weighted': kernel_shape=(5, 11, 11), kernel_divisor=10.0, normalize_per_sample=False, curriculum(enabled=True, schedule='cosine', start_epoch=180.0, ramp_epochs=20.0)
+[Trainer] Params: 49,706,932 total | 49,706,932 trainable | 0 frozen (VAE)
+[Trainer] Checkpoints for this run (training_mode='flow_matching', representation='voxel') -> ./new_ckpts/MIU/RegAware/SoftDilation_STloss_HighRes_curriculum/flow_matching/voxel
+[Trainer] Loading checkpoint: /home/alaa.mohamed/OncoCast+/new_ckpts/MIU/RegAware/SoftDilation_STloss_HighRes_curriculum/flow_matching/voxel/ckpt_e0240.pt
+[Trainer] Resuming from epoch 241
+[Trainer] Resumed at absolute epoch 241. Tumor-weight curriculum: start=180, ramp=20, progress=1.0000, alpha=1.0000.
+[Trainer][SPLIT] train=90 val=19 test=19 patients (disjoint, verified)
+[Trainer] Reusing genomics preprocessing statistics restored from checkpoint.
+[Dataset3D-WholeVolume] Patients=89 | Samples=548 | representation=voxel | model_shape=(64, 192, 192) | normalization_policy=whole_volume | context_sampling=all_windows | tumor_positive_target_fraction=1.000 | context_length_histogram={1: 244, 2: 155, 3: 86, 4: 46, 5: 17}
+[Dataset3D-WholeVolume] Patients=19 | Samples=104 | representation=voxel | model_shape=(64, 192, 192) | normalization_policy=whole_volume | context_sampling=all_windows | tumor_positive_target_fraction=1.000 | context_length_histogram={1: 47, 2: 28, 3: 17, 4: 9, 5: 3}
+[Dataset3D-WholeVolume] Patients=19 | Samples=108 | representation=voxel | model_shape=(64, 192, 192) | normalization_policy=whole_volume | context_sampling=all_windows | tumor_positive_target_fraction=1.000 | context_length_histogram={1: 49, 2: 30, 3: 16, 4: 9, 5: 4}
+[Trainer] 500 epochs, 548 batches/epoch
+/home/alaa.mohamed/OncoCast+/src/training/trainer.py:457: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=self.use_amp):
+[Train][E241] step 100/548 loss=0.0151 mse=0.0028 
+/home/alaa.mohamed/OncoCast+/src/training/trainer.py:457: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=self.use_amp):
+[Train][E241] step 200/548 loss=0.0139 mse=0.0029 
+[Train][E241] step 300/548 loss=0.0127 mse=0.0028 
+[Train][E241] step 400/548 loss=0.0126 mse=0.0028 
+[Train][E241] step 500/548 loss=0.0131 mse=0.0028 
+[Trainer.validate_epoch] weights_used=ema
+/home/alaa.mohamed/OncoCast+/src/training/trainer.py:542: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=self.use_amp):
+[Val][ step 100/104 loss=0.0230 mse=0.0066
+[E241/500] train_loss=0.0131 train_mse=0.0028 val_loss=0.0232 val_mse=0.0067 time=383.7s lr=5.33e-05
+[Train][E242] step 100/548 loss=0.0116 mse=0.0030 
+[Train][E242] step 200/548 loss=0.0120 mse=0.0029 
+[Train][E242] step 300/548 loss=0.0140 mse=0.0031 
+[Train][E242] step 400/548 loss=0.0126 mse=0.0028 
+[Train][E242] step 500/548 loss=0.0125 mse=0.0028 
+[Trainer.validate_epoch] weights_used=ema
+[Val][ step 100/104 loss=0.0232 mse=0.0066
+[E242/500] train_loss=0.0126 train_mse=0.0028 val_loss=0.0237 val_mse=0.0069 time=382.2s lr=5.30e-05
+[Train][E243] step 100/548 loss=0.0140 mse=0.0028 
+[Train][E243] step 200/548 loss=0.0123 mse=0.0029 
+[Train][E243] step 300/548 loss=0.0125 mse=0.0029 
+[Train][E243] step 400/548 loss=0.0125 mse=0.0029 
+[Train][E243] step 500/548 loss=0.0125 mse=0.0029 
+[Trainer.validate_epoch] weights_used=ema
+[Val][ step 100/104 loss=0.0257 mse=0.0069

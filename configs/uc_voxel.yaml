@@ -1,0 +1,125 @@
+data:
+  representation: "voxel"
+
+  voxel_shape: [64, 96, 96]
+  voxel_image_interp_mode: "trilinear"
+  voxel_label_interp_mode: "nearest"
+
+  data_dir: "/home/alaa.mohamed/UC"
+  split_csv_path: "/home/alaa.mohamed/OncoFlow+/src/data/splits/uc_patient_split.csv"
+  num_workers: 4
+  batch_size: 1
+
+  latent_dir: null
+  merge_labels: true
+  real_geno: true
+  genomic_dim: 13
+
+  schema_version: 3
+
+  geno_preproc: "zscore_train_fit"
+
+  normalization_policy: "whole_volume"
+  normalization_clip_pct: [0.5, 99.5]
+  image_stats_path: "/home/alaa.mohamed/UC/image_stats_flair.json"
+  apply_n4_bias_correction: false
+  n4_cache_dir: "/home/alaa.mohamed/UC/n4_cache"
+
+  volume_cache_size: 64
+
+  context_sampling: "all_windows"
+  sampler_policy: "none"
+  sampler_target_fraction: 0.3
+
+vae:
+  backend: "identity"
+  latent_channels: 1
+  downsample_factor: 1
+  latent_scale: 1.0
+
+context:
+  time_embed_dim: 128
+  treatment_vocab_size: 4
+  treatment_embed_dim: 64
+  treatment_continuous_dim: 0
+  context_dim: 256
+  genomic_dim: 13
+  binding_mode: "adagn"
+
+  condition_on_treatment: true
+
+temporal_aggregator:
+  variant: "patch_temporal_spatial"
+  num_layers: 4
+  num_heads: 1
+  patch_size: [8, 16, 16]
+  spatial_downsample: 4
+  aggregation: "learned_query"
+  sn_context_dim: 512
+
+unet:
+  base_channels: 32
+  channel_multipliers: [1, 2, 4, 8]
+  num_res_blocks: 2
+  num_heads: 4
+  dropout: 0.1
+  concat_temporal_summary: false
+  concat_last: true
+  cross_attn_temporal_sequence: true
+  global_cond_dim: 512
+  use_metadata_cross_attn: true
+  attention_min_level: 2
+
+diffusion:
+  num_timesteps: 1000
+  noise_schedule: "cosine"
+  prediction_type: "epsilon"
+  beta_start: 0.0001
+  beta_end: 0.02
+  ddim_steps: 50
+  ddim_eta: 0.0
+
+flow_matching:
+  sigma_min: 0.0
+  time_scale: 999.0
+  num_steps: 50
+  solver: "euler"
+
+  flow_path: "region_aware_source"
+  flow_loss: "tumor_weighted"
+
+  region_aware_source:
+    preservation_mode: "hard_dilation"
+    sigma: 10.0
+    kernel_size: [5, 11, 11]
+    p_min: 0.1
+    gamma: 1
+seg_head:
+  enabled: false
+  num_classes: 1
+  hidden_channels: 64
+  loss_weight: 0.25
+  noise_threshold: 0.5
+
+training:
+  training_mode: "flow_matching"
+  epochs: 1000
+  lr: 1e-4
+  weight_decay: 1e-5
+  optimizer: "adamw"
+  scheduler: "cosine"
+  warmup_steps: 1000
+  gradient_accumulation_steps: 4
+  mixed_precision: true
+  ema_decay: 0.9999
+  checkpoint_every: 50
+  val_every: 1
+  log_dir: "./new_ckpts/UC/RegAware/SoftDilation_TWloss"
+  use_wandb: true
+  wandb_project: OncoFlow
+  wandb_run_name: voxel_exp01
+  eval_every: 10
+  eval_ddim_steps: 50
+  best_metric: dice
+  cond_dropout_prob: 0.3
+  null_treatment_id: 3

@@ -1,0 +1,231 @@
+/home/alaa.mohamed/.conda/envs/wm/lib/python3.10/site-packages/torchmetrics/utilities/imports.py:22: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+========================================================================
+TaGeDiff — Whole-Volume Quantitative Evaluation on Patient Split
+========================================================================
+  Device         : cuda
+  Checkpoint     : /home/alaa.mohamed/OncoCast+/new_ckpts/MIU/RegAware/SoftDilation_STloss_HighRes_curriculum/flow_matching/voxel/ckpt_e0240.pt
+  Training mode  : flow_matching
+  Representation : voxel
+  Split CSV      : src/data/splits/mu_patient_split.csv
+  Split filter   : test
+  ODE steps (flow_matching, solver=euler): 50
+  EMA policy     : auto
+  Register baseline (change metrics): True
+  Output dir     : evaluations/Full_Eval/MU/RegAware/SoftDilation_STloss_HighRes_Curriculum_Ckpt240
+========================================================================
+[EvalSplit] Found 19 patient(s).
+[TaGeDiff] flow_matching.flow_loss='normalized_tumor_weighted': kernel_shape=(5, 11, 11), kernel_divisor=10.0, normalize_per_sample=False, curriculum(enabled=True, schedule='cosine', start_epoch=180.0, ramp_epochs=20.0)
+============================================================
+[EvalSplit] WEIGHTS USED: EMA (ema_policy=auto) — epoch=240 loaded=654 skipped=0
+============================================================
+[EvalSplit] Approx. voxel spacing (dz,dy,dx) mm: (2.421875, 1.25, 1.25) (derived from native ~1mm-isotropic assumption)
+Patients:   0%|          | 0/19 [00:00<?, ?it/s][EvalSplit] Patient 'PatientID_0142': image=(2, 4, 155, 240, 240), label=(2, 155, 240, 240)
+
+Patient PatientID_0142:   0%|          | 0/1 [00:00<?, ?it/s][A/home/alaa.mohamed/OncoCast+/scripts/full_test.py:895: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  "geno": torch.tensor([geno], dtype=torch.float32, device=device),
+/home/alaa.mohamed/OncoCast+/scripts/full_test.py:1132: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=amp_enabled):
+/home/alaa.mohamed/.conda/envs/wm/lib/python3.10/site-packages/pytorch_msssim/ssim.py:50: UserWarning: Skipping Gaussian Smoothing at dimension 2+0 for input: torch.Size([1, 1, 8, 24, 24]) and win size: 11
+  warnings.warn(
+/home/alaa.mohamed/.conda/envs/wm/lib/python3.10/site-packages/pytorch_msssim/ssim.py:50: UserWarning: Skipping Gaussian Smoothing at dimension 2+0 for input: torch.Size([1, 1, 4, 12, 12]) and win size: 11
+  warnings.warn(
+
+Patient PatientID_0142:   0%|          | 0/1 [00:12<?, ?it/s, mse=0.01307, ssim=0.8107][A
+Patient PatientID_0142: 100%|██████████| 1/1 [00:12<00:00, 12.60s/it, mse=0.01307, ssim=0.8107][A
+                                                                                               [APatients:   5%|▌         | 1/19 [00:12<03:47, 12.62s/it][EvalSplit] PatientID_0142: n=1 MSE=0.013073 MS-SSIM=0.8915 SSIM=0.8107 latent_MSE=0.013121 | tumor_MSE=0.047236 tumor_SSIM=0.3478 tumor_PSNR=13.26 growth_recall=0.448±nan shrink_recall=0.670±nan total_recall=0.597±nan | MR(tumor)=0.772±nan MR(dilated)=0.814±nan
+[EvalSplit] Patient 'PatientID_0140': image=(3, 4, 155, 240, 240), label=(3, 155, 240, 240)
+
+Patient PatientID_0140:   0%|          | 0/2 [00:00<?, ?it/s][A
+Patient PatientID_0140:   0%|          | 0/2 [00:11<?, ?it/s, mse=0.01343, ssim=0.7872][A
+Patient PatientID_0140:  50%|█████     | 1/2 [00:11<00:11, 11.64s/it, mse=0.01343, ssim=0.7872][A
+Patient PatientID_0140:  50%|█████     | 1/2 [00:24<00:11, 11.64s/it, mse=0.01099, ssim=0.8138][A
+Patient PatientID_0140: 100%|██████████| 2/2 [00:24<00:00, 12.52s/it, mse=0.01099, ssim=0.8138][A
+                                                                                               [APatients:  11%|█         | 2/19 [00:37<05:36, 19.78s/it][EvalSplit] PatientID_0140: n=2 MSE=0.012211 MS-SSIM=0.8783 SSIM=0.8005 latent_MSE=0.012284 | tumor_MSE=0.035507 tumor_SSIM=0.5408 tumor_PSNR=14.83 growth_recall=0.304±0.008 shrink_recall=0.783±0.201 total_recall=0.669±0.216 | MR(tumor)=1.276±0.688 MR(dilated)=1.257±0.516
+[EvalSplit] Patient 'PatientID_0014': image=(6, 4, 155, 240, 240), label=(6, 155, 240, 240)
+
+Patient PatientID_0014:   0%|          | 0/5 [00:00<?, ?it/s][A
+Patient PatientID_0014:   0%|          | 0/5 [00:11<?, ?it/s, mse=0.01195, ssim=0.7848][A
+Patient PatientID_0014:  20%|██        | 1/5 [00:11<00:46, 11.55s/it, mse=0.01195, ssim=0.7848][A
+Patient PatientID_0014:  20%|██        | 1/5 [00:24<00:46, 11.55s/it, mse=0.00719, ssim=0.8579][A
+Patient PatientID_0014:  40%|████      | 2/5 [00:24<00:37, 12.37s/it, mse=0.00719, ssim=0.8579][A
+Patient PatientID_0014:  40%|████      | 2/5 [00:38<00:37, 12.37s/it, mse=0.00584, ssim=0.8849][A
+Patient PatientID_0014:  60%|██████    | 3/5 [00:38<00:26, 13.33s/it, mse=0.00584, ssim=0.8849][A
+Patient PatientID_0014:  60%|██████    | 3/5 [00:54<00:26, 13.33s/it, mse=0.00864, ssim=0.7967][A
+Patient PatientID_0014:  80%|████████  | 4/5 [00:55<00:14, 14.42s/it, mse=0.00864, ssim=0.7967][A
+Patient PatientID_0014:  80%|████████  | 4/5 [01:12<00:14, 14.42s/it, mse=0.00924, ssim=0.7838][A
+Patient PatientID_0014: 100%|██████████| 5/5 [01:12<00:00, 15.50s/it, mse=0.00924, ssim=0.7838][A
+                                                                                               [APatients:  16%|█▌        | 3/19 [01:49<11:41, 43.85s/it][EvalSplit] PatientID_0014: n=5 MSE=0.008572 MS-SSIM=0.9102 SSIM=0.8216 latent_MSE=0.008648 | tumor_MSE=0.027908 tumor_SSIM=0.4421 tumor_PSNR=15.58 growth_recall=0.574±0.244 shrink_recall=0.450±0.299 total_recall=0.605±0.137 | MR(tumor)=1.280±0.430 MR(dilated)=1.226±0.410
+[EvalSplit] Patient 'PatientID_0220': image=(2, 4, 155, 240, 240), label=(2, 155, 240, 240)
+
+Patient PatientID_0220:   0%|          | 0/1 [00:00<?, ?it/s][A
+Patient PatientID_0220:   0%|          | 0/1 [00:10<?, ?it/s, mse=0.01256, ssim=0.8144][A
+Patient PatientID_0220: 100%|██████████| 1/1 [00:11<00:00, 11.01s/it, mse=0.01256, ssim=0.8144][A
+                                                                                               [APatients:  21%|██        | 4/19 [02:00<07:43, 30.89s/it][EvalSplit] PatientID_0220: n=1 MSE=0.012560 MS-SSIM=0.8561 SSIM=0.8144 latent_MSE=0.012794 | tumor_MSE=0.105253 tumor_SSIM=0.2221 tumor_PSNR=9.78 growth_recall=0.115±nan shrink_recall=0.828±nan total_recall=0.362±nan | MR(tumor)=0.757±nan MR(dilated)=0.831±nan
+[EvalSplit] Patient 'PatientID_0207': image=(6, 4, 155, 240, 240), label=(6, 155, 240, 240)
+
+Patient PatientID_0207:   0%|          | 0/5 [00:00<?, ?it/s][A
+Patient PatientID_0207:   0%|          | 0/5 [00:11<?, ?it/s, mse=0.01793, ssim=0.7985][A
+Patient PatientID_0207:  20%|██        | 1/5 [00:11<00:45, 11.45s/it, mse=0.01793, ssim=0.7985][A
+Patient PatientID_0207:  20%|██        | 1/5 [00:23<00:45, 11.45s/it, mse=0.01549, ssim=0.7964][A
+Patient PatientID_0207:  40%|████      | 2/5 [00:24<00:36, 12.27s/it, mse=0.01549, ssim=0.7964][A
+Patient PatientID_0207:  40%|████      | 2/5 [00:38<00:36, 12.27s/it, mse=0.01516, ssim=0.5971][A
+Patient PatientID_0207:  60%|██████    | 3/5 [00:38<00:26, 13.15s/it, mse=0.01516, ssim=0.5971][A
+Patient PatientID_0207:  60%|██████    | 3/5 [00:53<00:26, 13.15s/it, mse=0.00707, ssim=0.8629][A
+Patient PatientID_0207:  80%|████████  | 4/5 [00:54<00:14, 14.17s/it, mse=0.00707, ssim=0.8629][A
+Patient PatientID_0207:  80%|████████  | 4/5 [01:11<00:14, 14.17s/it, mse=0.00492, ssim=0.9069][A
+Patient PatientID_0207: 100%|██████████| 5/5 [01:11<00:00, 15.31s/it, mse=0.00492, ssim=0.9069][A
+                                                                                               [APatients:  26%|██▋       | 5/19 [03:12<10:37, 45.57s/it][EvalSplit] PatientID_0207: n=5 MSE=0.012113 MS-SSIM=0.8813 SSIM=0.7924 latent_MSE=0.012354 | tumor_MSE=0.062067 tumor_SSIM=0.4392 tumor_PSNR=13.10 growth_recall=0.497±0.193 shrink_recall=0.530±0.192 total_recall=0.467±0.159 | MR(tumor)=1.106±0.436 MR(dilated)=1.063±0.344
+[EvalSplit] Patient 'PatientID_0110': image=(3, 4, 155, 240, 240), label=(3, 155, 240, 240)
+
+Patient PatientID_0110:   0%|          | 0/2 [00:00<?, ?it/s][A
+Patient PatientID_0110:   0%|          | 0/2 [00:10<?, ?it/s, mse=0.01793, ssim=0.6914][A
+Patient PatientID_0110:  50%|█████     | 1/2 [00:11<00:11, 11.24s/it, mse=0.01793, ssim=0.6914][A
+Patient PatientID_0110:  50%|█████     | 1/2 [00:24<00:11, 11.24s/it, mse=0.01150, ssim=0.7941][A
+Patient PatientID_0110: 100%|██████████| 2/2 [00:24<00:00, 12.39s/it, mse=0.01150, ssim=0.7941][A
+                                                                                               [APatients:  32%|███▏      | 6/19 [03:36<08:19, 38.39s/it][EvalSplit] PatientID_0110: n=2 MSE=0.014715 MS-SSIM=0.8162 SSIM=0.7427 latent_MSE=0.014765 | tumor_MSE=0.052410 tumor_SSIM=0.2888 tumor_PSNR=13.01 growth_recall=0.422±0.124 shrink_recall=0.730±0.102 total_recall=0.542±0.033 | MR(tumor)=0.704±0.099 MR(dilated)=0.858±0.039
+[EvalSplit] Patient 'PatientID_0275': image=(3, 4, 155, 240, 240), label=(3, 155, 240, 240)
+
+Patient PatientID_0275:   0%|          | 0/2 [00:00<?, ?it/s][A
+Patient PatientID_0275:   0%|          | 0/2 [00:10<?, ?it/s, mse=0.00766, ssim=0.8497][A
+Patient PatientID_0275:  50%|█████     | 1/2 [00:11<00:11, 11.22s/it, mse=0.00766, ssim=0.8497][A
+Patient PatientID_0275:  50%|█████     | 1/2 [00:23<00:11, 11.22s/it, mse=0.00932, ssim=0.8692][A
+Patient PatientID_0275: 100%|██████████| 2/2 [00:24<00:00, 12.24s/it, mse=0.00932, ssim=0.8692][A
+                                                                                               [APatients:  37%|███▋      | 7/19 [04:01<06:45, 33.76s/it][EvalSplit] PatientID_0275: n=2 MSE=0.008490 MS-SSIM=0.9204 SSIM=0.8594 latent_MSE=0.008588 | tumor_MSE=0.029369 tumor_SSIM=0.4961 tumor_PSNR=15.32 growth_recall=0.520±0.482 shrink_recall=0.534±0.427 total_recall=0.689±0.096 | MR(tumor)=0.854±0.268 MR(dilated)=0.797±0.042
+[EvalSplit] Patient 'PatientID_0121': image=(3, 4, 155, 240, 240), label=(3, 155, 240, 240)
+
+Patient PatientID_0121:   0%|          | 0/2 [00:00<?, ?it/s][A
+Patient PatientID_0121:   0%|          | 0/2 [00:11<?, ?it/s, mse=0.00614, ssim=0.8742][A
+Patient PatientID_0121:  50%|█████     | 1/2 [00:11<00:11, 11.42s/it, mse=0.00614, ssim=0.8742][A
+Patient PatientID_0121:  50%|█████     | 1/2 [00:24<00:11, 11.42s/it, mse=0.00635, ssim=0.8556][A
+Patient PatientID_0121: 100%|██████████| 2/2 [00:24<00:00, 12.67s/it, mse=0.00635, ssim=0.8556][A
+                                                                                               [APatients:  42%|████▏     | 8/19 [04:26<05:40, 30.97s/it][EvalSplit] PatientID_0121: n=2 MSE=0.006243 MS-SSIM=0.9492 SSIM=0.8649 latent_MSE=0.006303 | tumor_MSE=0.033933 tumor_SSIM=0.3581 tumor_PSNR=14.79 growth_recall=0.549±0.030 shrink_recall=0.416±0.038 total_recall=0.488±0.025 | MR(tumor)=1.089±0.411 MR(dilated)=1.093±0.472
+[EvalSplit] Patient 'PatientID_0239': image=(3, 4, 155, 240, 240), label=(3, 155, 240, 240)
+
+Patient PatientID_0239:   0%|          | 0/2 [00:00<?, ?it/s][A
+Patient PatientID_0239:   0%|          | 0/2 [00:10<?, ?it/s, mse=0.00906, ssim=0.8545][A
+Patient PatientID_0239:  50%|█████     | 1/2 [00:11<00:11, 11.27s/it, mse=0.00906, ssim=0.8545][A
+Patient PatientID_0239:  50%|█████     | 1/2 [00:23<00:11, 11.27s/it, mse=0.00936, ssim=0.8466][A
+Patient PatientID_0239: 100%|██████████| 2/2 [00:24<00:00, 12.21s/it, mse=0.00936, ssim=0.8466][A
+                                                                                               [APatients:  47%|████▋     | 9/19 [04:50<04:48, 28.84s/it][EvalSplit] PatientID_0239: n=2 MSE=0.009210 MS-SSIM=0.9095 SSIM=0.8505 latent_MSE=0.009318 | tumor_MSE=0.039294 tumor_SSIM=0.4445 tumor_PSNR=14.16 growth_recall=0.490±0.119 shrink_recall=0.520±0.218 total_recall=0.513±0.174 | MR(tumor)=0.805±0.084 MR(dilated)=0.781±0.178
+[EvalSplit] Patient 'PatientID_0145': image=(2, 4, 155, 240, 240), label=(2, 155, 240, 240)
+
+Patient PatientID_0145:   0%|          | 0/1 [00:00<?, ?it/s][A
+Patient PatientID_0145:   0%|          | 0/1 [00:10<?, ?it/s, mse=0.01344, ssim=0.7039][A
+Patient PatientID_0145: 100%|██████████| 1/1 [00:11<00:00, 11.25s/it, mse=0.01344, ssim=0.7039][A
+                                                                                               [APatients:  53%|█████▎    | 10/19 [05:01<03:30, 23.42s/it][EvalSplit] PatientID_0145: n=1 MSE=0.013438 MS-SSIM=0.8436 SSIM=0.7039 latent_MSE=0.013486 | tumor_MSE=0.047527 tumor_SSIM=0.3302 tumor_PSNR=13.23 growth_recall=0.473±nan shrink_recall=0.734±nan total_recall=0.602±nan | MR(tumor)=0.707±nan MR(dilated)=0.696±nan
+[EvalSplit] Patient 'PatientID_0097': image=(6, 4, 155, 240, 240), label=(6, 155, 240, 240)
+
+Patient PatientID_0097:   0%|          | 0/5 [00:00<?, ?it/s][A
+Patient PatientID_0097:   0%|          | 0/5 [00:11<?, ?it/s, mse=0.00979, ssim=0.8177][A
+Patient PatientID_0097:  20%|██        | 1/5 [00:11<00:46, 11.60s/it, mse=0.00979, ssim=0.8177][A
+Patient PatientID_0097:  20%|██        | 1/5 [00:24<00:46, 11.60s/it, mse=0.00526, ssim=0.8365][A
+Patient PatientID_0097:  40%|████      | 2/5 [00:24<00:36, 12.30s/it, mse=0.00526, ssim=0.8365][A
+Patient PatientID_0097:  40%|████      | 2/5 [00:38<00:36, 12.30s/it, mse=0.00260, ssim=0.9074][A
+Patient PatientID_0097:  60%|██████    | 3/5 [00:38<00:26, 13.31s/it, mse=0.00260, ssim=0.9074][A
+Patient PatientID_0097:  60%|██████    | 3/5 [00:54<00:26, 13.31s/it, mse=0.00906, ssim=0.8451][A
+Patient PatientID_0097:  80%|████████  | 4/5 [00:55<00:14, 14.51s/it, mse=0.00906, ssim=0.8451][A
+Patient PatientID_0097:  80%|████████  | 4/5 [01:12<00:14, 14.51s/it, mse=0.00998, ssim=0.7417][A
+Patient PatientID_0097: 100%|██████████| 5/5 [01:13<00:00, 15.68s/it, mse=0.00998, ssim=0.7417][A
+                                                                                               [APatients:  58%|█████▊    | 11/19 [06:14<05:08, 38.60s/it][EvalSplit] PatientID_0097: n=5 MSE=0.007339 MS-SSIM=0.9167 SSIM=0.8297 latent_MSE=0.007383 | tumor_MSE=0.026398 tumor_SSIM=0.5415 tumor_PSNR=16.27 growth_recall=0.478±0.076 shrink_recall=0.601±0.192 total_recall=0.545±0.065 | MR(tumor)=0.903±0.484 MR(dilated)=0.972±0.458
+[EvalSplit] Patient 'PatientID_0090': image=(2, 4, 155, 240, 240), label=(2, 155, 240, 240)
+
+Patient PatientID_0090:   0%|          | 0/1 [00:00<?, ?it/s][A
+Patient PatientID_0090:   0%|          | 0/1 [00:10<?, ?it/s, mse=0.01344, ssim=0.7764][A
+Patient PatientID_0090: 100%|██████████| 1/1 [00:11<00:00, 11.24s/it, mse=0.01344, ssim=0.7764][A
+                                                                                               [APatients:  63%|██████▎   | 12/19 [06:25<03:32, 30.29s/it][EvalSplit] PatientID_0090: n=1 MSE=0.013436 MS-SSIM=0.8474 SSIM=0.7764 latent_MSE=0.013528 | tumor_MSE=0.034545 tumor_SSIM=0.4528 tumor_PSNR=14.62 growth_recall=0.665±nan shrink_recall=0.459±nan total_recall=0.583±nan | MR(tumor)=0.479±nan MR(dilated)=0.549±nan
+[EvalSplit] Patient 'PatientID_0052': image=(2, 4, 155, 240, 240), label=(2, 155, 240, 240)
+
+Patient PatientID_0052:   0%|          | 0/1 [00:00<?, ?it/s][A
+Patient PatientID_0052:   0%|          | 0/1 [00:11<?, ?it/s, mse=0.01051, ssim=0.8283][A
+Patient PatientID_0052: 100%|██████████| 1/1 [00:11<00:00, 11.56s/it, mse=0.01051, ssim=0.8283][A
+                                                                                               [APatients:  68%|██████▊   | 13/19 [06:37<02:27, 24.62s/it][EvalSplit] PatientID_0052: n=1 MSE=0.010510 MS-SSIM=0.8755 SSIM=0.8283 latent_MSE=0.010593 | tumor_MSE=0.046578 tumor_SSIM=0.3115 tumor_PSNR=13.32 growth_recall=0.297±nan shrink_recall=0.879±nan total_recall=0.600±nan | MR(tumor)=0.909±nan MR(dilated)=0.982±nan
+[EvalSplit] Patient 'PatientID_0070': image=(4, 4, 155, 240, 240), label=(4, 155, 240, 240)
+
+Patient PatientID_0070:   0%|          | 0/3 [00:00<?, ?it/s][A
+Patient PatientID_0070:   0%|          | 0/3 [00:10<?, ?it/s, mse=0.00788, ssim=0.8458][A
+Patient PatientID_0070:  33%|███▎      | 1/3 [00:11<00:22, 11.37s/it, mse=0.00788, ssim=0.8458][A
+Patient PatientID_0070:  33%|███▎      | 1/3 [00:23<00:22, 11.37s/it, mse=0.00877, ssim=0.8532][A
+Patient PatientID_0070:  67%|██████▋   | 2/3 [00:23<00:12, 12.09s/it, mse=0.00877, ssim=0.8532][A
+Patient PatientID_0070:  67%|██████▋   | 2/3 [00:37<00:12, 12.09s/it, mse=0.01315, ssim=0.8192][A
+Patient PatientID_0070: 100%|██████████| 3/3 [00:38<00:00, 13.04s/it, mse=0.01315, ssim=0.8192][A
+                                                                                               [APatients:  74%|███████▎  | 14/19 [07:15<02:23, 28.71s/it][EvalSplit] PatientID_0070: n=3 MSE=0.009933 MS-SSIM=0.8580 SSIM=0.8394 latent_MSE=0.010025 | tumor_MSE=0.049405 tumor_SSIM=0.3211 tumor_PSNR=13.10 growth_recall=0.547±0.092 shrink_recall=0.496±0.120 total_recall=0.538±0.092 | MR(tumor)=0.668±0.140 MR(dilated)=0.720±0.110
+[EvalSplit] Patient 'PatientID_0093': image=(4, 4, 155, 240, 240), label=(4, 155, 240, 240)
+
+Patient PatientID_0093:   0%|          | 0/3 [00:00<?, ?it/s][A
+Patient PatientID_0093:   0%|          | 0/3 [00:11<?, ?it/s, mse=0.00558, ssim=0.8730][A
+Patient PatientID_0093:  33%|███▎      | 1/3 [00:11<00:23, 11.59s/it, mse=0.00558, ssim=0.8730][A
+Patient PatientID_0093:  33%|███▎      | 1/3 [00:23<00:23, 11.59s/it, mse=0.00933, ssim=0.8037][A
+Patient PatientID_0093:  67%|██████▋   | 2/3 [00:24<00:12, 12.14s/it, mse=0.00933, ssim=0.8037][A
+Patient PatientID_0093:  67%|██████▋   | 2/3 [00:37<00:12, 12.14s/it, mse=0.00655, ssim=0.8283][A
+Patient PatientID_0093: 100%|██████████| 3/3 [00:38<00:00, 13.12s/it, mse=0.00655, ssim=0.8283][A
+                                                                                               [APatients:  79%|███████▉  | 15/19 [07:54<02:06, 31.63s/it][EvalSplit] PatientID_0093: n=3 MSE=0.007152 MS-SSIM=0.9159 SSIM=0.8350 latent_MSE=0.007201 | tumor_MSE=0.027583 tumor_SSIM=0.4472 tumor_PSNR=15.65 growth_recall=0.436±0.088 shrink_recall=0.389±0.180 total_recall=0.428±0.033 | MR(tumor)=0.812±0.245 MR(dilated)=0.842±0.202
+[EvalSplit] Patient 'PatientID_0256': image=(5, 4, 155, 240, 240), label=(5, 155, 240, 240)
+
+Patient PatientID_0256:   0%|          | 0/4 [00:00<?, ?it/s][A
+Patient PatientID_0256:   0%|          | 0/4 [00:10<?, ?it/s, mse=0.01013, ssim=0.8098][A
+Patient PatientID_0256:  25%|██▌       | 1/4 [00:11<00:33, 11.13s/it, mse=0.01013, ssim=0.8098][A
+Patient PatientID_0256:  25%|██▌       | 1/4 [00:23<00:33, 11.13s/it, mse=0.01054, ssim=0.8354][A
+Patient PatientID_0256:  50%|█████     | 2/4 [00:23<00:24, 12.12s/it, mse=0.01054, ssim=0.8354][A
+Patient PatientID_0256:  50%|█████     | 2/4 [00:38<00:24, 12.12s/it, mse=0.01697, ssim=0.7724][A
+Patient PatientID_0256:  75%|███████▌  | 3/4 [00:38<00:13, 13.28s/it, mse=0.01697, ssim=0.7724][A
+Patient PatientID_0256:  75%|███████▌  | 3/4 [00:54<00:13, 13.28s/it, mse=0.01370, ssim=0.7664][A
+Patient PatientID_0256: 100%|██████████| 4/4 [00:54<00:00, 14.31s/it, mse=0.01370, ssim=0.7664][A
+                                                                                               [APatients:  84%|████████▍ | 16/19 [08:48<01:55, 38.53s/it][EvalSplit] PatientID_0256: n=4 MSE=0.012834 MS-SSIM=0.8152 SSIM=0.7960 latent_MSE=0.012914 | tumor_MSE=0.045488 tumor_SSIM=0.3426 tumor_PSNR=13.46 growth_recall=0.708±0.145 shrink_recall=0.338±0.101 total_recall=0.501±0.124 | MR(tumor)=0.926±0.281 MR(dilated)=0.940±0.301
+[EvalSplit] Patient 'PatientID_0059': image=(3, 4, 155, 240, 240), label=(3, 155, 240, 240)
+
+Patient PatientID_0059:   0%|          | 0/2 [00:00<?, ?it/s][A
+Patient PatientID_0059:   0%|          | 0/2 [00:10<?, ?it/s, mse=0.00671, ssim=0.8160][A
+Patient PatientID_0059:  50%|█████     | 1/2 [00:11<00:11, 11.30s/it, mse=0.00671, ssim=0.8160][A
+Patient PatientID_0059:  50%|█████     | 1/2 [00:23<00:11, 11.30s/it, mse=0.00868, ssim=0.8161][A
+Patient PatientID_0059: 100%|██████████| 2/2 [00:24<00:00, 12.13s/it, mse=0.00868, ssim=0.8161][A
+                                                                                               [APatients:  89%|████████▉ | 17/19 [09:12<01:08, 34.17s/it][EvalSplit] PatientID_0059: n=2 MSE=0.007697 MS-SSIM=0.9087 SSIM=0.8161 latent_MSE=0.007715 | tumor_MSE=0.032820 tumor_SSIM=0.4000 tumor_PSNR=14.85 growth_recall=0.174±0.066 shrink_recall=0.802±0.149 total_recall=0.586±0.281 | MR(tumor)=0.739±0.383 MR(dilated)=0.878±0.444
+[EvalSplit] Patient 'PatientID_0147': image=(3, 4, 155, 240, 240), label=(3, 155, 240, 240)
+
+Patient PatientID_0147:   0%|          | 0/2 [00:00<?, ?it/s][A
+Patient PatientID_0147:   0%|          | 0/2 [00:11<?, ?it/s, mse=0.02481, ssim=0.7686][A
+Patient PatientID_0147:  50%|█████     | 1/2 [00:12<00:12, 12.01s/it, mse=0.02481, ssim=0.7686][A
+Patient PatientID_0147:  50%|█████     | 1/2 [00:24<00:12, 12.01s/it, mse=0.01854, ssim=0.7741][A
+Patient PatientID_0147: 100%|██████████| 2/2 [00:24<00:00, 12.54s/it, mse=0.01854, ssim=0.7741][A
+                                                                                               [APatients:  95%|█████████▍| 18/19 [09:37<00:31, 31.40s/it][EvalSplit] PatientID_0147: n=2 MSE=0.021672 MS-SSIM=0.7936 SSIM=0.7714 latent_MSE=0.021818 | tumor_MSE=0.074182 tumor_SSIM=0.2917 tumor_PSNR=11.33 growth_recall=0.397±0.076 shrink_recall=0.716±0.041 total_recall=0.533±0.057 | MR(tumor)=0.931±0.243 MR(dilated)=0.972±0.294
+[EvalSplit] Patient 'PatientID_0189': image=(6, 4, 155, 240, 240), label=(6, 155, 240, 240)
+
+Patient PatientID_0189:   0%|          | 0/5 [00:00<?, ?it/s][A
+Patient PatientID_0189:   0%|          | 0/5 [00:10<?, ?it/s, mse=0.01103, ssim=0.8452][A
+Patient PatientID_0189:  20%|██        | 1/5 [00:11<00:45, 11.27s/it, mse=0.01103, ssim=0.8452][A
+Patient PatientID_0189:  20%|██        | 1/5 [00:23<00:45, 11.27s/it, mse=0.01470, ssim=0.8133][A
+Patient PatientID_0189:  40%|████      | 2/5 [00:24<00:36, 12.14s/it, mse=0.01470, ssim=0.8133][A
+Patient PatientID_0189:  40%|████      | 2/5 [00:37<00:36, 12.14s/it, mse=0.01205, ssim=0.8241][A
+Patient PatientID_0189:  60%|██████    | 3/5 [00:38<00:26, 13.09s/it, mse=0.01205, ssim=0.8241][A
+Patient PatientID_0189:  60%|██████    | 3/5 [00:53<00:26, 13.09s/it, mse=0.01159, ssim=0.8403][A
+Patient PatientID_0189:  80%|████████  | 4/5 [00:54<00:14, 14.19s/it, mse=0.01159, ssim=0.8403][A
+Patient PatientID_0189:  80%|████████  | 4/5 [01:11<00:14, 14.19s/it, mse=0.00409, ssim=0.9246][A
+Patient PatientID_0189: 100%|██████████| 5/5 [01:11<00:00, 15.41s/it, mse=0.00409, ssim=0.9246][A
+                                                                                               [APatients: 100%|██████████| 19/19 [10:49<00:00, 43.51s/it]Patients: 100%|██████████| 19/19 [10:49<00:00, 34.18s/it]
+[EvalSplit] PatientID_0189: n=5 MSE=0.010692 MS-SSIM=0.9097 SSIM=0.8495 latent_MSE=0.010870 | tumor_MSE=0.051336 tumor_SSIM=0.4373 tumor_PSNR=13.26 growth_recall=0.501±0.095 shrink_recall=0.417±0.126 total_recall=0.480±0.069 | MR(tumor)=1.105±0.468 MR(dilated)=1.005±0.347
+
+[EvalSplit] Aggregate metrics (whole-volume, weights=EMA)
+  Patients requested : 19
+  Patients evaluated : 19
+  Failed patients    : 0
+  Timepoints evaluated: 49
+  Average MSE        : 0.010605
+  Average MS-SSIM    : 0.8845
+  Average SSIM       : 0.8167 (gaussian_window_pytorch_msssim_win11_sigma1.5_data_range1)
+  Average PSNR       : 20.11 dB
+  Average latent MSE : 0.010708
+  Average MSE (tumor): 0.043421
+  Average SSIM (tumor): 0.4139
+  Average MS-SSIM (tumor): nan
+  Average PSNR (tumor): 14.12 dB
+  Growth recall      : 0.452 ± 0.149
+  Shrink recall      : 0.594 ± 0.168
+  Total (change) recall: 0.544 ± 0.080
+  MR (tumor)         : 0.885 ± 0.210 (CCC 0.240 ± 0.130)
+  MR (dilated 4.9mm)  : 0.909 ± 0.177 (CCC 0.215 ± 0.106)
+
+[EvalSplit] Saved outputs
+  Timepoint metrics  : evaluations/Full_Eval/MU/RegAware/SoftDilation_STloss_HighRes_Curriculum_Ckpt240/timepoint_metrics.csv
+  Patient metrics    : evaluations/Full_Eval/MU/RegAware/SoftDilation_STloss_HighRes_Curriculum_Ckpt240/patient_metrics.csv
+  Change metrics     : evaluations/Full_Eval/MU/RegAware/SoftDilation_STloss_HighRes_Curriculum_Ckpt240/change_metrics.csv (588 rows: patient x timepoint x method[model/copy_baseline/oracle] x region[tumor/dilated/control/full])
+  Summary metrics    : evaluations/Full_Eval/MU/RegAware/SoftDilation_STloss_HighRes_Curriculum_Ckpt240/summary_metrics.csv
