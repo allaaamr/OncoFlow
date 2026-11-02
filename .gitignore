@@ -1,0 +1,6 @@
+*.pyc
+*.pt
+*.ckpt
+**/ckpts/
+**/checkpoints/
+**/monai_vae_bundle/

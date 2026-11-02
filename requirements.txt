@@ -1,0 +1,46 @@
+# Pinned to the environment this repo's training loop (scripts/train.py ->
+# src/training/trainer.py) and its Accelerate/DDP multi-GPU integration were
+# actually verified against: Python 3.10, CUDA 12.4 (matches `nvidia-smi`'s
+# reported driver-supported CUDA version on this project's GPU nodes — driver
+# 550.54.14). torch/torchvision/torchaudio ship their OWN bundled CUDA 12.4
+# runtime in the wheel itself, so no separate system CUDA toolkit install is
+# required or assumed; only the NVIDIA driver needs to support it (it does).
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Multi-GPU (Accelerate/DDP) launch — see README.md's "Multi-GPU Training"
+# section for the full one/four-GPU/BF16/resume command reference:
+#   accelerate launch --multi_gpu --num_processes 4 scripts/train.py --config <cfg>
+
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+torchaudio==2.6.0+cu124
+
+# Multi-GPU / mixed-precision training (this integration)
+accelerate==1.14.0
+
+# Model / conditioning / training utilities
+einops==0.8.1
+pytorch-msssim==1.0.0
+torchmetrics==0.11.4
+
+
+# Data / image IO / preprocessing
+numpy==2.0.0
+pandas==2.3.3
+scipy==1.15.3
+scikit-image==0.25.2
+nibabel==5.3.3
+SimpleITK==2.5.6
+Pillow==11.3.0
+PyYAML==6.0.3
+
+# Experiment tracking, progress, viz
+wandb==0.28.2
+tqdm==4.67.1
+matplotlib==3.10.8
+
+# Test suite (tests/, scripts/full_test.py)
+pytest==9.1.1
